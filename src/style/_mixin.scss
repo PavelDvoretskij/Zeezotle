@@ -1,0 +1,771 @@
+@use "sass:math";
+
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+@mixin font-size($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      font-size: $e + px;
+    } @else {
+      font-size: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      font-size: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      font-size: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      font-size: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      font-size: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      font-size: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      font-size: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    font-size: $n + px;
+  }
+}
+
+@mixin line-height($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      line-height: $e + px;
+    } @else {
+      line-height: calc($n / 1.4) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      line-height: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      line-height: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      line-height: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      line-height: calc($n / 1.2) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      line-height: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      line-height: calc($n / 1.1) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    line-height: $n + px;
+  }
+}
+
+@mixin height($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      height: $e + px;
+    } @else {
+      height: calc($n / 1.4) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      height: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      height: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      height: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      height: calc($n / 1.2) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      height: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      height: calc($n / 1.1) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    height: $n + px;
+  }
+}
+
+@mixin widthHeight($n1, $n2, $e1: false, $e2: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e1) {
+      width: $e1 + px;
+      height: $e2 + px;
+    } @else {
+      width: calc($n1 / 1.6) + px;
+      height: calc($n2 / 1.6) + px;
+    }
+  }
+
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e1) {
+      width: calc(($n1 - $e1) / 100 * 25) + $e1 + px;
+      height: calc(($n2 - $e2) / 100 * 25) + $e2 + px;
+    } @else {
+      width: calc($n1 / 1.45) + px;
+      height: calc($n2 / 1.45) + px;
+    }
+  }
+
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e1) {
+      width: calc(($n1 - $e1) / 100 * 50) + $e1 + px;
+      height: calc(($n2 - $e2) / 100 * 50) + $e2 + px;
+    } @else {
+      width: calc($n1 / 1.3) + px;
+      height: calc($n2 / 1.3) + px;
+    }
+  }
+
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e1) {
+      width: calc(($n1 - $e1) / 100 * 75) + $e1 + px;
+      height: calc(($n2 - $e2) / 100 * 75) + $e2 + px;
+    } @else {
+      width: calc($n1 / 1.15) + px;
+      height: calc($n2 / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    width: $n1 + px;
+    height: $n2 + px;
+  }
+}
+
+@mixin column-gap($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      column-gap: $e + px;
+    } @else {
+      column-gap: calc($n / 1.4) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      column-gap: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      column-gap: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      column-gap: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      column-gap: calc($n / 1.2) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      column-gap: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      column-gap: calc($n / 1.1) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    column-gap: $n + px;
+  }
+}
+
+@mixin paddingAll(
+  $n1,
+  $n2,
+  $n3,
+  $n4,
+  $e1: false,
+  $e2: false,
+  $e3: false,
+  $e4: false
+) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e1) {
+      padding: $e1 + px $e2 + px $e3 + px $e4 + px;
+    } @else {
+      padding: calc($n1 / 1.6) +
+        px
+        calc($n2 / 1.6) +
+        px
+        calc($n3 / 1.6) +
+        px
+        calc($n4 / 1.6) +
+        px;
+    }
+  }
+
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e1) {
+      padding: calc(($n1 - $e1) / 100 * 25) +
+        $e1 +
+        px
+        calc(($n2 - $e2) / 100 * 25) +
+        $e2 +
+        px
+        calc(($n3 - $e3) / 100 * 25) +
+        $e3 +
+        px
+        calc(($n4 - $e4) / 100 * 25) +
+        $e4 +
+        px;
+    } @else {
+      padding: calc($n1 / 1.45) +
+        px
+        calc($n2 / 1.45) +
+        px
+        calc($n3 / 1.45) +
+        px
+        calc($n4 / 1.45) +
+        px;
+    }
+  }
+
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e1) {
+      padding: calc(($n1 - $e1) / 100 * 50) +
+        $e1 +
+        px
+        calc(($n2 - $e2) / 100 * 50) +
+        $e2 +
+        px
+        calc(($n3 - $e3) / 100 * 50) +
+        $e3 +
+        px
+        calc(($n4 - $e4) / 100 * 50) +
+        $e4 +
+        px;
+    } @else {
+      padding: calc($n1 / 1.3) +
+        px
+        calc($n2 / 1.3) +
+        px
+        calc($n3 / 1.3) +
+        px
+        calc($n4 / 1.3) +
+        px;
+    }
+  }
+
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e1) {
+      padding: calc(($n1 - $e1) / 100 * 75) +
+        $e1 +
+        px
+        calc(($n2 - $e2) / 100 * 75) +
+        $e2 +
+        px
+        calc(($n3 - $e3) / 100 * 75) +
+        $e3 +
+        px
+        calc(($n4 - $e4) / 100 * 75) +
+        $e4 +
+        px;
+    } @else {
+      padding: calc($n1 / 1.15) + px calc($n2 / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    padding: $n1 + px $n2 + px $n3 + px $n4 + px;
+  }
+}
+
+@mixin padding($n1, $n2, $e1: false, $e2: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e1) {
+      padding: $e1 + px $e2 + px;
+    } @else {
+      padding: calc($n1 / 1.6) + px calc($n2 / 1.6) + px;
+    }
+  }
+
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e1) {
+      padding: calc(($n1 - $e1) / 100 * 25) +
+        $e1 +
+        px
+        calc(($n2 - $e2) / 100 * 25) +
+        $e2 +
+        px;
+    } @else {
+      padding: calc($n1 / 1.45) + px calc($n2 / 1.45) + px;
+    }
+  }
+
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e1) {
+      padding: calc(($n1 - $e1) / 100 * 50) +
+        $e1 +
+        px
+        calc(($n2 - $e2) / 100 * 50) +
+        $e2 +
+        px;
+    } @else {
+      padding: calc($n1 / 1.3) + px calc($n2 / 1.3) + px;
+    }
+  }
+
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e1) {
+      padding: calc(($n1 - $e1) / 100 * 75) +
+        $e1 +
+        px
+        calc(($n2 - $e2) / 100 * 75) +
+        $e2 +
+        px;
+    } @else {
+      padding: calc($n1 / 1.15) + px calc($n2 / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    padding: $n1 + px $n2 + px;
+  }
+}
+
+@mixin padding-top($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      padding-top: $e + px;
+    } @else {
+      padding-top: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      padding-top: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      padding-top: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      padding-top: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      padding-top: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      padding-top: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      padding-top: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    padding-top: $n + px;
+  }
+}
+
+@mixin padding-bottom($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      padding-bottom: $e + px;
+    } @else {
+      padding-bottom: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      padding-bottom: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      padding-bottom: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      padding-bottom: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      padding-bottom: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      padding-bottom: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      padding-bottom: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    padding-bottom: $n + px;
+  }
+}
+
+@mixin padding-right($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      padding-right: $e + px;
+    } @else {
+      padding-right: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      padding-right: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      padding-right: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      padding-right: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      padding-right: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      padding-right: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      padding-right: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    padding-right: $n + px;
+  }
+}
+
+@mixin padding-left($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      padding-left: $e + px;
+    } @else {
+      padding-left: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      padding-left: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      padding-left: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      padding-left: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      padding-left: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      padding-left: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      padding-left: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    padding-left: $n + px;
+  }
+}
+
+@mixin margin-bottom($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      margin-bottom: $e + px;
+    } @else {
+      margin-bottom: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      margin-bottom: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      margin-bottom: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      margin-bottom: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      margin-bottom: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      margin-bottom: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      margin-bottom: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    margin-bottom: $n + px;
+  }
+}
+
+@mixin margin-top($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      margin-top: $e + px;
+    } @else {
+      margin-top: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      margin-top: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      margin-top: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      margin-top: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      margin-top: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      margin-top: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      margin-top: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    margin-top: $n + px;
+  }
+}
+
+@mixin margin-right($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      margin-right: $e + px;
+    } @else {
+      margin-right: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      margin-right: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      margin-right: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      margin-right: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      margin-right: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      margin-right: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      margin-right: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    margin-right: $n + px;
+  }
+}
+
+@mixin margin-left($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      margin-left: $e + px;
+    } @else {
+      margin-left: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      margin-left: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      margin-left: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      margin-left: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      margin-left: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      margin-left: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      margin-left: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    margin-left: $n + px;
+  }
+}
+
+@mixin min-height($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      min-height: $e + px;
+    } @else {
+      min-height: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      min-height: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      min-height: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      min-height: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      min-height: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      min-height: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      min-height: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    min-height: $n + px;
+  }
+}
+
+@mixin top($n, $e: false) {
+  @media screen and (max-width: $sm - 1) {
+    @if ($e) {
+      top: $e + px;
+    } @else {
+      top: calc($n / 1.6) + px;
+    }
+  }
+  @media screen and (min-width: $sm) and (max-width: $md - 1) {
+    @if ($e) {
+      top: calc(($n - $e) / 100 * 25) + $e + px;
+    } @else {
+      top: calc($n / 1.45) + px;
+    }
+  }
+  @media screen and (min-width: $md) and (max-width: $lg - 1) {
+    @if ($e) {
+      top: calc(($n - $e) / 100 * 50) + $e + px;
+    } @else {
+      top: calc($n / 1.3) + px;
+    }
+  }
+  @media screen and (min-width: $lg) and (max-width: $xl - 1) {
+    @if ($e) {
+      top: calc(($n - $e) / 100 * 75) + $e + px;
+    } @else {
+      top: calc($n / 1.15) + px;
+    }
+  }
+  @media screen and (min-width: $xl) {
+    top: $n + px;
+  }
+}
+
+@mixin sm {
+  @media screen and (min-width: $sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: $md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: $lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media screen and (min-width: $xxl) {
+    @content;
+  }
+}
+
+@mixin to-xxl {
+  @media screen and (max-width: 1399px) {
+    @content;
+  }
+}
+
+@mixin to-xl {
+  @media screen and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin to-lg {
+  @media screen and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin to-md {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin to-sm {
+  @media screen and (max-width: 575px) {
+    @content;
+  }
+}
+
+@mixin from-to-sm-md {
+  @media screen and (min-width: $sm) and (max-width: $md) {
+    @content;
+  }
+}
+
+@mixin from-to-sm-lg {
+  @media screen and (min-width: $sm) and (max-width: $lg) {
+    @content;
+  }
+}
+
+@mixin from($min_width) {
+  @media screen and (min-width: $min_width) {
+    @content;
+  }
+}
+
+@mixin to($max_width) {
+  @media screen and (max-width: $max_width) {
+    @content;
+  }
+}
+
+@mixin from-to($min_width, $max_width) {
+  @media screen and (min-width: $min_width) and (max-width: $max_width) {
+    @content;
+  }
+}

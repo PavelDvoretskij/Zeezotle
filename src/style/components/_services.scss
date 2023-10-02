@@ -1,0 +1,88 @@
+@use "sass:math";
+
+.services {
+  &__container {
+    @include padding-top(109, 10);
+    @include padding-bottom(50);
+    @include to-md {
+      //padding-top: math.div(50, 2) + px;
+      //background-color: grey;
+    }
+  }
+
+  &__item {
+    @include row-flex;
+    @include margin-bottom(30);
+    align-items: center;
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__text {
+    @include col;
+    @include size(5);
+    margin: 0 auto;
+    @include to(900px) {
+      @include size(12);
+    }
+  }
+
+  &__title {
+    @include font-size(40);
+    @include line-height(88);
+    color: $black-color;
+    font-weight: 700;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    @include to(900px) {
+      display: inline-block;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &:after {
+      content: "";
+      width: 108px;
+      height: 2px;
+      display: block;
+      background-color: $brun-color;
+      transform: translate(-50px, 5px);
+      @include to(900px) {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -10px);
+      }
+    }
+  }
+
+  &__desc {
+    @include font-size(16);
+    @include line-height(32);
+    max-width: 470px;
+    color: #808080;
+    font-weight: 400;
+    @include to(900px) {
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
+
+  &__img-container {
+    @include col;
+    @include size(7);
+    @include to(900px) {
+      @include size(12);
+    }
+  }
+
+  &__img {
+    max-width: 670px;
+    width: 100%;
+    margin: 0 auto;
+    @include to(900px) {
+      max-width: 100%;
+    }
+  }
+}
