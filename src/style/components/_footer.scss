@@ -1,0 +1,29 @@
+.footer {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    @include padding(41, 30);
+    @include to-sm{
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__logo {
+    @include widthHeight(269, 55);
+    margin-bottom: 10px;
+  }
+
+}
+
+
+
+
+footer .social {
+  padding-top: 4px;
+  &__btn {
+    border: 1px solid $black-color;
+    color: $black-color;
+  }
+}
+
